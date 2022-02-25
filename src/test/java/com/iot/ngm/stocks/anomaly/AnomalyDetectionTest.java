@@ -42,8 +42,8 @@ public class AnomalyDetectionTest {
         SpecificAvroSerde<AggregatedStock> aggStockSerde = new SpecificAvroSerde<>(mockSRClient);
         aggStockSerde.configure(Collections.singletonMap("schema.registry.url", "mock://dummy:5678"), false);
         testDriver = new TopologyTestDriver(ad.createTopology(aggStockSerde), config);
-        inputTopic = testDriver.createInputTopic("agg-stock", new StringSerializer(), aggStockSerde.serializer());
-        outputTopic = testDriver.createOutputTopic("anomalous-stock", new StringDeserializer(), aggStockSerde.deserializer());
+        inputTopic = testDriver.createInputTopic("stock-agg", new StringSerializer(), aggStockSerde.serializer());
+        outputTopic = testDriver.createOutputTopic("stock-anomaly", new StringDeserializer(), aggStockSerde.deserializer());
     }
 
     @After
